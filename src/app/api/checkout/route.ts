@@ -24,18 +24,18 @@ export async function POST(req: NextRequest) {
         'Authorization': `Bearer ${stripeKey}`,
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      body: new URLSearchParams({
-        'payment_method_types[0]': 'card',
-        'line_items[0][price_data][currency]': 'usd',
-        'line_items[0][price_data][product_data][name]': 'ContractorOverBid Full Report',
-        'line_items[0][price_data][product_data][description]': 'Complete line-by-line contractor quote analysis with negotiation tips and savings breakdown.',
-        'line_items[0][price_data][unit_amount]': '999',
-        'line_items[0][quantity]': '1',
-        'mode': 'payment',
-        'success_url': `${baseUrl}/payment/success?reportId=${reportId}&session_id={CHECKOUT_SESSION_ID}`,
-        'cancel_url': `${baseUrl}/payment/cancel?reportId=${reportId}`,
-        'metadata[reportId]': reportId,
-      }).toString(),
+      body: [
+        'payment_method_types[0]=card',
+        'line_items[0][price_data][currency]=usd',
+        `line_items[0][price_data][product_data][name]=${encodeURIComponent('ContractorOverBid Full Report')}`,
+        `line_items[0][price_data][product_data][description]=${encodeURIComponent('Complete line-by-line contractor quote analysis with negotiation tips and savings breakdown.')}`,
+        'line_items[0][price_data][unit_amount]=999',
+        'line_items[0][quantity]=1',
+        'mode=payment',
+        `success_url=${encodeURIComponent(`${baseUrl}/payment/success?reportId=${reportId}&session_id={CHECKOUT_SESSION_ID}`)}`,
+        `cancel_url=${encodeURIComponent(`${baseUrl}/payment/cancel?reportId=${reportId}`)}`,
+        `metadata[reportId]=${reportId}`,
+      ].join('&'),
     })
 
     const data = await response.json()
