@@ -250,9 +250,9 @@ export default function HomePage() {
             className="grid grid-cols-1 sm:grid-cols-3 gap-8"
           >
             {[
-              { target: 4200000, prefix: '$', suffix: '+', label: 'in overcharges exposed', note: 'and counting' },
-              { target: 10000, prefix: '', suffix: '+', label: 'quotes analyzed', note: 'across the US' },
-              { target: 2400, prefix: '$', suffix: '', label: 'average savings', note: 'per homeowner' },
+              { value: '60 sec', label: 'analysis time', note: 'from paste to report' },
+              { value: '50 states', label: 'regional pricing', note: 'localized market data' },
+              { value: '24/7', label: 'instant access', note: 'no appointments needed' },
             ].map((stat, i) => (
               <motion.div
                 key={stat.label}
@@ -260,7 +260,7 @@ export default function HomePage() {
                 className={`text-center ${i === 1 ? 'sm:border-x sm:border-slate-100' : ''}`}
               >
                 <p className="text-3xl sm:text-4xl font-extrabold text-teal-600 mb-1">
-                  <AnimatedCounter target={stat.target} prefix={stat.prefix} suffix={stat.suffix} />
+                  {stat.value}
                 </p>
                 <p className="text-sm font-semibold text-slate-700">{stat.label}</p>
                 <p className="text-xs text-slate-400 mt-0.5">{stat.note}</p>
@@ -447,7 +447,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Testimonials ── */}
+      {/* ── Why It Matters ── */}
       <section id="testimonials" className="bg-slate-50 py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
           <motion.div
@@ -457,11 +457,11 @@ export default function HomePage() {
             variants={fadeUp}
             className="text-center mb-14"
           >
-            <p className="text-sm font-semibold text-teal-600 uppercase tracking-widest mb-3">Social Proof</p>
+            <p className="text-sm font-semibold text-teal-600 uppercase tracking-widest mb-3">Why It Matters</p>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-4">
-              Homeowners Who Saved Big
+              The Problem with Contractor Quotes
             </h2>
-            <p className="text-slate-500 text-lg">Real savings from real people — not marketing copy.</p>
+            <p className="text-slate-500 text-lg max-w-2xl mx-auto">Most homeowners have no way to know if a price is fair — until now.</p>
           </motion.div>
 
           <motion.div
@@ -473,49 +473,34 @@ export default function HomePage() {
           >
             {[
               {
-                quote: 'My roofing contractor quoted me $18,500. ContractorOverBid showed me I was being overcharged by nearly $4,000. I negotiated down to $14,200 using their script. Worth every penny!',
-                name: 'Michael R.',
-                location: 'Austin, TX',
-                saved: '$4,300 saved',
-                initials: 'MR',
+                icon: '📊',
+                stat: '20–35%',
+                title: 'Average markup on labor',
+                description: 'Contractors routinely mark up labor costs well above market rate, especially for homeowners who only get one quote.',
               },
               {
-                quote: 'I was about to sign a $32,000 kitchen remodel contract. The AI found 6 overpriced line items and I ended up paying $27,500. That $10 report saved me $4,500!',
-                name: 'Sarah L.',
-                location: 'Denver, CO',
-                saved: '$4,500 saved',
-                initials: 'SL',
+                icon: '🏠',
+                stat: '1 in 3',
+                title: 'Quotes contain hidden fees',
+                description: 'Vague line items, bundled costs, and missing scope details make it nearly impossible to compare quotes fairly.',
                 featured: true,
               },
               {
-                quote: 'The HVAC quote I received was $8,800. ContractorOverBid flagged two items as significantly overpriced. I got the job done for $6,200 with a different contractor. Amazing tool!',
-                name: 'James T.',
-                location: 'Chicago, IL',
-                saved: '$2,600 saved',
-                initials: 'JT',
+                icon: '💬',
+                stat: '85%',
+                title: 'Of homeowners don\'t negotiate',
+                description: 'Most people accept the first quote because they lack the knowledge to push back. The right data changes that.',
               },
             ].map((item) => (
               <motion.div
-                key={item.name}
+                key={item.title}
                 variants={fadeUp}
                 className={`bg-white rounded-2xl p-6 border shadow-card transition-all duration-200 hover:shadow-card-md hover:-translate-y-0.5 ${item.featured ? 'border-teal-200 ring-1 ring-teal-100' : 'border-slate-200'}`}
               >
-                <Stars />
-                <p className="text-slate-600 text-sm leading-relaxed my-4">&ldquo;{item.quote}&rdquo;</p>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 bg-teal-100 rounded-full flex items-center justify-center">
-                      <span className="text-teal-700 font-bold text-xs">{item.initials}</span>
-                    </div>
-                    <div>
-                      <p className="font-semibold text-sm text-slate-900">{item.name}</p>
-                      <p className="text-xs text-slate-400">{item.location}</p>
-                    </div>
-                  </div>
-                  <span className="text-xs font-bold text-teal-600 bg-teal-50 border border-teal-100 px-2.5 py-1 rounded-full">
-                    {item.saved}
-                  </span>
-                </div>
+                <div className="text-3xl mb-3">{item.icon}</div>
+                <p className="text-3xl font-extrabold text-teal-600 mb-2">{item.stat}</p>
+                <h3 className="font-bold text-slate-900 mb-2">{item.title}</h3>
+                <p className="text-slate-500 text-sm leading-relaxed">{item.description}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -538,7 +523,7 @@ export default function HomePage() {
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
             </svg>
-            67% of quotes contain at least one overpriced item
+            Most homeowners accept the first quote they receive
           </motion.div>
 
           <motion.h2
