@@ -17,25 +17,25 @@ export async function POST(req: NextRequest) {
 
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://contractor-overbid.vercel.app'
 
-    // Use fetch directly to avoid Stripe SDK connection issues on Vercel
+    const params = new URLSearchParams()
+    params.append('payment_method_types[0]', 'card')
+    params.append('line_items[0][price_data][currency]', 'usd')
+    params.append('line_items[0][price_data][product_data][name]', 'ContractorOverBid Full Report')
+    params.append('line_items[0][price_data][product_data][description]', 'Complete line-by-line quote analysis with negotiation tips.')
+    params.append('line_items[0][price_data][unit_amount]', '999')
+    params.append('line_items[0][quantity]', '1')
+    params.append('mode', 'payment')
+    params.append('success_url', `${baseUrl}/payment/success?reportId=${reportId}`)
+    params.append('cancel_url', `${baseUrl}/payment/cancel?reportId=${reportId}`)
+    params.append('metadata[reportId]', reportId)
+
     const response = await fetch('https://api.stripe.com/v1/checkout/sessions', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${stripeKey}`,
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      body: [
-        'payment_method_types[0]=card',
-        'line_items[0][price_data][currency]=usd',
-        `line_items[0][price_data][product_data][name]=${encodeURIComponent('ContractorOverBid Full Report')}`,
-        `line_items[0][price_data][product_data][description]=${encodeURIComponent('Complete line-by-line quote analysis with negotiation tips.')}`,
-        'line_items[0][price_data][unit_amount]=999',
-        'line_items[0][quantity]=1',
-        'mode=payment',
-        `success_url=${encodeURIComponent(baseUrl + '/payment/success?reportId=' + reportId)}`,
-        `cancel_url=${encodeURIComponent(baseUrl + '/payment/cancel?reportId=' + reportId)}`,
-        `metadata[reportId]=${reportId}`,
-      ].join('&'),
+      body: params.toString(),
     })
 
     const data = await response.json()
