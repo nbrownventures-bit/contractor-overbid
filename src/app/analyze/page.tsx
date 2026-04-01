@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { motion } from 'framer-motion'
 
 const JOB_TYPES = [
   'Roofing',
@@ -33,6 +34,16 @@ interface LineItem {
   description: string
   quantity: number
   unitPrice: number
+}
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
+}
+
+const stagger = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.1 } },
 }
 
 export default function AnalyzePage() {
@@ -121,36 +132,79 @@ export default function AnalyzePage() {
   }
 
   return (
-    <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-slate-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-3xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-10">
-          <h1 className="text-3xl sm:text-4xl font-bold mb-3">
-            Analyze Your <span className="gradient-text">Contractor Quote</span>
-          </h1>
-          <p className="text-gray-400 text-lg">
-            Enter your quote details below and our AI will analyze it in seconds.
-          </p>
-        </div>
 
-        <form onSubmit={handleSubmit} className="space-y-8">
-          {/* Job Details */}
-          <div className="glass-card rounded-2xl p-6 sm:p-8 space-y-6">
-            <h2 className="text-xl font-bold flex items-center gap-2">
-              <span className="w-8 h-8 bg-orange-500/10 rounded-lg flex items-center justify-center text-orange-500 text-sm font-bold">1</span>
-              Job Details
-            </h2>
+        {/* Page header */}
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={stagger}
+          className="text-center mb-10"
+        >
+          <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-teal-50 border border-teal-200 text-teal-700 text-sm font-medium mb-4">
+            <span className="w-2 h-2 bg-teal-500 rounded-full" />
+            Free Analysis
+          </motion.div>
+          <motion.h1 variants={fadeUp} className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-3">
+            Analyze Your Contractor Quote
+          </motion.h1>
+          <motion.p variants={fadeUp} className="text-slate-500 text-lg max-w-xl mx-auto">
+            Enter your quote details and our AI will analyze it against real market rates in seconds.
+          </motion.p>
+        </motion.div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {/* Progress stepper */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="flex items-center justify-center gap-2 mb-8"
+        >
+          {[
+            { n: '1', label: 'Job Details' },
+            { n: '2', label: 'Quote Details' },
+            { n: '3', label: 'Analysis' },
+          ].map((step, i) => (
+            <div key={step.n} className="flex items-center gap-2">
+              <div className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold ${i < 2 ? 'bg-teal-600 text-white' : 'bg-slate-200 text-slate-500'}`}>
+                <span>{step.n}</span>
+                <span className="hidden sm:inline">{step.label}</span>
+              </div>
+              {i < 2 && <div className="w-6 h-px bg-slate-300" />}
+            </div>
+          ))}
+        </motion.div>
+
+        <form onSubmit={handleSubmit} className="space-y-6">
+
+          {/* ── Card 1: Job Details ── */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.25, duration: 0.5 }}
+            className="bg-white rounded-2xl border border-slate-200 shadow-card p-6 sm:p-8 space-y-6"
+          >
+            <div className="flex items-center gap-3 pb-4 border-b border-slate-100">
+              <div className="w-9 h-9 bg-teal-600 rounded-xl flex items-center justify-center">
+                <span className="text-white font-bold text-sm">1</span>
+              </div>
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
-                  Job Type <span className="text-orange-500">*</span>
+                <h2 className="text-lg font-bold text-slate-900">Job Details</h2>
+                <p className="text-xs text-slate-400">Tell us about the project</p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label className="block text-sm font-semibold text-slate-700 mb-2">
+                  Job Type <span className="text-teal-600">*</span>
                 </label>
                 <select
                   value={jobType}
                   onChange={(e) => setJobType(e.target.value)}
                   required
-                  className="w-full input-dark rounded-lg px-4 py-3"
+                  className="w-full input-light rounded-xl px-4 py-3 text-sm"
                 >
                   <option value="">Select job type...</option>
                   {JOB_TYPES.map((type) => (
@@ -160,23 +214,23 @@ export default function AnalyzePage() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
-                  Contractor Name <span className="text-gray-600">(optional)</span>
+                <label className="block text-sm font-semibold text-slate-700 mb-2">
+                  Contractor Name <span className="text-slate-400 font-normal">(optional)</span>
                 </label>
                 <input
                   type="text"
                   value={contractorName}
                   onChange={(e) => setContractorName(e.target.value)}
                   placeholder="e.g., ABC Roofing Co."
-                  className="w-full input-dark rounded-lg px-4 py-3"
+                  className="w-full input-light rounded-xl px-4 py-3 text-sm"
                 />
               </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
-                  City <span className="text-orange-500">*</span>
+                <label className="block text-sm font-semibold text-slate-700 mb-2">
+                  City <span className="text-teal-600">*</span>
                 </label>
                 <input
                   type="text"
@@ -184,19 +238,19 @@ export default function AnalyzePage() {
                   onChange={(e) => setCity(e.target.value)}
                   required
                   placeholder="e.g., Austin"
-                  className="w-full input-dark rounded-lg px-4 py-3"
+                  className="w-full input-light rounded-xl px-4 py-3 text-sm"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
-                  State <span className="text-orange-500">*</span>
+                <label className="block text-sm font-semibold text-slate-700 mb-2">
+                  State <span className="text-teal-600">*</span>
                 </label>
                 <select
                   value={state}
                   onChange={(e) => setState(e.target.value)}
                   required
-                  className="w-full input-dark rounded-lg px-4 py-3"
+                  className="w-full input-light rounded-xl px-4 py-3 text-sm"
                 >
                   <option value="">Select...</option>
                   {US_STATES.map((s) => (
@@ -206,22 +260,22 @@ export default function AnalyzePage() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
-                  Square Footage <span className="text-gray-600">(optional)</span>
+                <label className="block text-sm font-semibold text-slate-700 mb-2">
+                  Sq Footage <span className="text-slate-400 font-normal">(optional)</span>
                 </label>
                 <input
                   type="number"
                   value={squareFootage}
                   onChange={(e) => setSquareFootage(e.target.value)}
                   placeholder="e.g., 1500"
-                  className="w-full input-dark rounded-lg px-4 py-3"
+                  className="w-full input-light rounded-xl px-4 py-3 text-sm"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-2">
-                Scope of Work <span className="text-orange-500">*</span>
+              <label className="block text-sm font-semibold text-slate-700 mb-2">
+                Scope of Work <span className="text-teal-600">*</span>
               </label>
               <textarea
                 value={scopeDescription}
@@ -229,24 +283,34 @@ export default function AnalyzePage() {
                 required
                 rows={3}
                 placeholder="Describe the work being done (e.g., 'Full roof replacement, tear off existing shingles, install new architectural shingles, replace flashing and vents')"
-                className="w-full input-dark rounded-lg px-4 py-3 resize-none"
+                className="w-full input-light rounded-xl px-4 py-3 text-sm resize-none"
               />
             </div>
-          </div>
+          </motion.div>
 
-          {/* Quote Details */}
-          <div className="glass-card rounded-2xl p-6 sm:p-8 space-y-6">
-            <h2 className="text-xl font-bold flex items-center gap-2">
-              <span className="w-8 h-8 bg-orange-500/10 rounded-lg flex items-center justify-center text-orange-500 text-sm font-bold">2</span>
-              Quote Details
-            </h2>
+          {/* ── Card 2: Quote Details ── */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.35, duration: 0.5 }}
+            className="bg-white rounded-2xl border border-slate-200 shadow-card p-6 sm:p-8 space-y-6"
+          >
+            <div className="flex items-center gap-3 pb-4 border-b border-slate-100">
+              <div className="w-9 h-9 bg-slate-800 rounded-xl flex items-center justify-center">
+                <span className="text-white font-bold text-sm">2</span>
+              </div>
+              <div>
+                <h2 className="text-lg font-bold text-slate-900">Quote Details</h2>
+                <p className="text-xs text-slate-400">What did the contractor quote you?</p>
+              </div>
+            </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-2">
-                Total Quoted Price <span className="text-orange-500">*</span>
+              <label className="block text-sm font-semibold text-slate-700 mb-2">
+                Total Quoted Price <span className="text-teal-600">*</span>
               </label>
               <div className="relative">
-                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 font-medium">$</span>
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-semibold text-sm">$</span>
                 <input
                   type="number"
                   value={totalPrice}
@@ -255,7 +319,7 @@ export default function AnalyzePage() {
                   min="1"
                   step="0.01"
                   placeholder="0.00"
-                  className="w-full input-dark rounded-lg pl-8 pr-4 py-3"
+                  className="w-full input-light rounded-xl pl-9 pr-4 py-3 text-sm font-semibold"
                 />
               </div>
             </div>
@@ -263,59 +327,73 @@ export default function AnalyzePage() {
             {/* Line Items */}
             <div>
               <div className="flex items-center justify-between mb-3">
-                <label className="block text-sm font-medium text-gray-300">
-                  Line Items <span className="text-gray-600">(optional but recommended)</span>
-                </label>
+                <div>
+                  <label className="block text-sm font-semibold text-slate-700">
+                    Line Items
+                  </label>
+                  <p className="text-xs text-slate-400 mt-0.5">Optional but recommended for a better analysis</p>
+                </div>
                 <button
                   type="button"
                   onClick={addLineItem}
-                  className="text-sm text-orange-500 hover:text-orange-400 font-medium"
+                  className="text-sm text-teal-600 hover:text-teal-700 font-semibold flex items-center gap-1 bg-teal-50 hover:bg-teal-100 px-3 py-1.5 rounded-lg transition-colors"
                 >
-                  + Add Item
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                  </svg>
+                  Add Item
                 </button>
               </div>
 
-              <div className="space-y-3">
+              {/* Header row */}
+              <div className="hidden sm:grid grid-cols-[1fr_64px_120px_32px] gap-2 mb-2 px-1">
+                <p className="text-xs font-medium text-slate-400">Description</p>
+                <p className="text-xs font-medium text-slate-400 text-center">Qty</p>
+                <p className="text-xs font-medium text-slate-400">Unit Price</p>
+                <div />
+              </div>
+
+              <div className="space-y-2.5">
                 {lineItems.map((item, index) => (
-                  <div key={item.id} className="flex gap-2 items-start">
+                  <div key={item.id} className="grid grid-cols-1 sm:grid-cols-[1fr_64px_120px_32px] gap-2 items-start">
                     <input
                       type="text"
                       value={item.description}
                       onChange={(e) => updateLineItem(item.id, 'description', e.target.value)}
                       placeholder={`Item ${index + 1} description`}
-                      className="flex-1 input-dark rounded-lg px-3 py-2 text-sm"
+                      className="input-light rounded-xl px-3 py-2.5 text-sm"
                     />
                     <input
                       type="number"
                       value={item.quantity || ''}
                       onChange={(e) => updateLineItem(item.id, 'quantity', Number(e.target.value))}
-                      placeholder="Qty"
+                      placeholder="1"
                       min="1"
-                      className="w-16 input-dark rounded-lg px-2 py-2 text-sm text-center"
+                      className="input-light rounded-xl px-2 py-2.5 text-sm text-center"
                     />
                     <div className="relative">
-                      <span className="absolute left-2 top-1/2 -translate-y-1/2 text-gray-600 text-sm">$</span>
+                      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">$</span>
                       <input
                         type="number"
                         value={item.unitPrice || ''}
                         onChange={(e) => updateLineItem(item.id, 'unitPrice', Number(e.target.value))}
-                        placeholder="Price"
+                        placeholder="0.00"
                         min="0"
                         step="0.01"
-                        className="w-28 input-dark rounded-lg pl-6 pr-2 py-2 text-sm"
+                        className="w-full input-light rounded-xl pl-7 pr-3 py-2.5 text-sm"
                       />
                     </div>
-                    {lineItems.length > 1 && (
+                    {lineItems.length > 1 ? (
                       <button
                         type="button"
                         onClick={() => removeLineItem(item.id)}
-                        className="p-2 text-gray-600 hover:text-red-500 transition-colors"
+                        className="p-2 text-slate-300 hover:text-red-400 transition-colors rounded-lg hover:bg-red-50 self-center"
                       >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                         </svg>
                       </button>
-                    )}
+                    ) : <div />}
                   </div>
                 ))}
               </div>
@@ -323,53 +401,68 @@ export default function AnalyzePage() {
 
             {/* Full Quote Text */}
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-2">
-                Paste Full Quote <span className="text-gray-600">(optional)</span>
+              <label className="block text-sm font-semibold text-slate-700 mb-2">
+                Paste Full Quote <span className="text-slate-400 font-normal">(optional)</span>
               </label>
+              <p className="text-xs text-slate-400 mb-2">Adding the full quote text gives the AI more context for a better analysis.</p>
               <textarea
                 value={quoteText}
                 onChange={(e) => setQuoteText(e.target.value)}
-                rows={6}
+                rows={5}
                 placeholder="Paste the full text of your contractor's quote or estimate here for a more detailed analysis..."
-                className="w-full input-dark rounded-lg px-4 py-3 resize-none text-sm"
+                className="w-full input-light rounded-xl px-4 py-3 resize-none text-sm"
               />
             </div>
-          </div>
+          </motion.div>
 
           {/* Error */}
           {error && (
-            <div className="bg-red-500/10 border border-red-500/20 rounded-xl p-4 text-red-400 text-sm">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.97 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="bg-red-50 border border-red-200 rounded-xl p-4 text-red-700 text-sm flex items-start gap-3"
+            >
+              <svg className="w-5 h-5 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
               {error}
-            </div>
+            </motion.div>
           )}
 
-          {/* Submit */}
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="w-full btn-orange py-4 rounded-xl text-lg font-bold flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+          {/* Submit button */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.45 }}
           >
-            {isSubmitting ? (
-              <>
-                <svg className="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                </svg>
-                Analyzing Your Quote...
-              </>
-            ) : (
-              <>
-                Analyze My Quote
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-              </>
-            )}
-          </button>
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full btn-teal py-4 rounded-xl text-base font-bold flex items-center justify-center gap-3 disabled:opacity-60 disabled:cursor-not-allowed disabled:transform-none"
+            >
+              {isSubmitting ? (
+                <>
+                  <svg className="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                  </svg>
+                  Analyzing Your Quote...
+                </>
+              ) : (
+                <>
+                  Analyze My Quote
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </>
+              )}
+            </button>
 
-          <p className="text-center text-xs text-gray-600">
-            Free initial analysis. Full detailed report for $9.99.
-          </p>
+            <p className="text-center text-xs text-slate-400 mt-3">
+              Free initial analysis. Full detailed report for $9.99. No subscription needed.
+            </p>
+          </motion.div>
+
         </form>
       </div>
     </div>

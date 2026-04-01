@@ -7,18 +7,19 @@ import Footer from '@/components/Footer'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'ContractorOverBid - AI-Powered Contractor Quote Analysis',
+  title: 'ContractorOverBid — AI-Powered Contractor Quote Analysis',
   description:
-    'Get an AI-powered second opinion on your contractor quote in 60 seconds. Find out if you are being overcharged and save thousands on your next home project.',
+    'Get an AI-powered second opinion on your contractor quote in 60 seconds. Find out if you\'re being overcharged and save thousands on your next home project.',
   keywords: [
     'contractor quote analysis',
     'contractor overcharging',
     'home improvement costs',
     'contractor pricing',
     'second opinion contractor',
+    'contractor bid review',
   ],
   openGraph: {
-    title: 'ContractorOverBid - Are You Getting OverBid?',
+    title: 'ContractorOverBid — Are You Getting OverBid?',
     description:
       'AI-powered second opinion on contractor quotes. Average savings of $2,400 for homeowners.',
     type: 'website',
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'ContractorOverBid - Are You Getting OverBid?',
+    title: 'ContractorOverBid — Are You Getting OverBid?',
     description:
       'AI-powered second opinion on contractor quotes. Average savings of $2,400 for homeowners.',
   },
@@ -40,8 +41,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} bg-background text-white min-h-screen flex flex-col`}
-        style={{ backgroundColor: '#0a0a0a' }}
+        className={`${inter.className} bg-white text-navy-900 min-h-screen flex flex-col`}
       >
         <Header />
         <main className="flex-1 pt-16">{children}</main>
