@@ -14,6 +14,7 @@ export default function Footer() {
                 </svg>
               </div>
               <span className="text-lg font-bold text-white tracking-tight">
+                <img src="/icon.svg" alt="" className="w-7 h-7" />
                 Contractor<span className="text-teal-400">OverBid</span>
               </span>
             </div>
