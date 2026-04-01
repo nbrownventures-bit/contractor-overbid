@@ -129,7 +129,7 @@ function ReportContent() {
       if (data.url) {
         window.location.href = data.url
       } else if (data.alreadyPaid) {
-        fetchReport()
+        loadReport()
       }
     } catch {
       setError('Failed to start checkout. Please try again.')
