@@ -2,7 +2,10 @@ import fs from 'fs'
 import path from 'path'
 import { Report } from '@/types'
 
-const DATA_DIR = path.join(process.cwd(), 'data', 'reports')
+// Use /tmp on Vercel (serverless), data/ locally
+const DATA_DIR = process.env.VERCEL
+  ? path.join('/tmp', 'reports')
+  : path.join(process.cwd(), 'data', 'reports')
 
 function ensureDirectoryExists(): void {
   if (!fs.existsSync(DATA_DIR)) {

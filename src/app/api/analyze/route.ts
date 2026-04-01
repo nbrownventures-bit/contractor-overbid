@@ -58,9 +58,10 @@ export async function POST(req: NextRequest) {
       },
     })
   } catch (error) {
-    console.error('Analysis error:', error)
+    const errMsg = error instanceof Error ? error.message : String(error)
+    console.error('Analysis error:', errMsg, error)
     return NextResponse.json(
-      { error: 'Failed to analyze quote. Please try again.' },
+      { error: `Analysis failed: ${errMsg}` },
       { status: 500 }
     )
   }
