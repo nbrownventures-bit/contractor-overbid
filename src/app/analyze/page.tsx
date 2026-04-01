@@ -1,8 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 
 const JOB_TYPES = [
   'Roofing',
@@ -50,6 +50,24 @@ export default function AnalyzePage() {
   const router = useRouter()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState('')
+  const [loadingStep, setLoadingStep] = useState(0)
+
+  const loadingSteps = [
+    { icon: '📋', text: 'Reading your quote details...' },
+    { icon: '🔍', text: 'Researching market rates for your area...' },
+    { icon: '📊', text: 'Comparing line items against fair pricing...' },
+    { icon: '🚩', text: 'Identifying red flags and overcharges...' },
+    { icon: '💬', text: 'Generating negotiation strategies...' },
+    { icon: '✅', text: 'Finalizing your report...' },
+  ]
+
+  useEffect(() => {
+    if (!isSubmitting) { setLoadingStep(0); return }
+    const interval = setInterval(() => {
+      setLoadingStep(prev => prev < loadingSteps.length - 1 ? prev + 1 : prev)
+    }, 4000)
+    return () => clearInterval(interval)
+  }, [isSubmitting])
 
   const [jobType, setJobType] = useState('')
   const [city, setCity] = useState('')
@@ -129,6 +147,44 @@ export default function AnalyzePage() {
     } finally {
       setIsSubmitting(false)
     }
+  }
+
+  if (isSubmitting) {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-white to-slate-50 flex items-center justify-center px-4">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="max-w-md w-full text-center"
+        >
+          <div className="bg-white rounded-2xl shadow-lg border border-slate-100 p-10">
+            <div className="relative w-16 h-16 mx-auto mb-6">
+              <div className="absolute inset-0 rounded-full border-4 border-slate-100" />
+              <div className="absolute inset-0 rounded-full border-4 border-teal-500 border-t-transparent animate-spin" />
+            </div>
+            <h2 className="text-xl font-bold text-slate-900 mb-2">Analyzing Your Quote</h2>
+            <p className="text-slate-400 text-sm mb-8">This usually takes 15–30 seconds</p>
+            <div className="space-y-3 text-left">
+              {loadingSteps.map((step, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0.3 }}
+                  animate={{ opacity: i <= loadingStep ? 1 : 0.3 }}
+                  className={`flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors ${
+                    i < loadingStep ? 'bg-teal-50' : i === loadingStep ? 'bg-slate-50' : ''
+                  }`}
+                >
+                  <span className="text-lg">{i < loadingStep ? '✅' : step.icon}</span>
+                  <span className={`text-sm ${
+                    i < loadingStep ? 'text-teal-700 font-medium' : i === loadingStep ? 'text-slate-700 font-medium' : 'text-slate-400'
+                  }`}>{step.text}</span>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    )
   }
 
   return (

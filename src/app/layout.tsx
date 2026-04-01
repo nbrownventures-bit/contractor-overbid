@@ -7,6 +7,10 @@ import Footer from '@/components/Footer'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
+  icons: {
+    icon: '/favicon.svg',
+    apple: '/icon.svg',
+  },
   title: 'ContractorOverBid — AI-Powered Contractor Quote Analysis',
   description:
     'Get an AI-powered second opinion on your contractor quote in 60 seconds. Find out if you\'re being overcharged and save thousands on your next home project.',

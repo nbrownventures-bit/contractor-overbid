@@ -31,6 +31,7 @@ export default function Header() {
               </svg>
             </div>
             <span className="text-lg font-bold text-slate-900 tracking-tight">
+              <img src="/icon.svg" alt="" className="w-7 h-7" />
               Contractor<span className="text-teal-600">OverBid</span>
             </span>
           </Link>
