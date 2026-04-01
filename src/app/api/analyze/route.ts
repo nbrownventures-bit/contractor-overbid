@@ -4,6 +4,9 @@ import { analyzeQuote } from '@/lib/claude'
 import { saveReport } from '@/lib/storage'
 import { QuoteData, Report } from '@/types'
 
+// Increase Vercel function timeout (default is 10s, max 60s on hobby)
+export const maxDuration = 60
+
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json()

@@ -1,9 +1,13 @@
 import Anthropic from '@anthropic-ai/sdk'
 import { QuoteData, AnalysisResult } from '@/types'
 
-const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY,
-})
+function getClient() {
+  const apiKey = process.env.ANTHROPIC_API_KEY
+  if (!apiKey) {
+    throw new Error('ANTHROPIC_API_KEY environment variable is not set')
+  }
+  return new Anthropic({ apiKey })
+}
 
 export async function analyzeQuote(quoteData: QuoteData): Promise<AnalysisResult> {
   const lineItemsText =
@@ -100,6 +104,7 @@ Please respond with ONLY a valid JSON object (no markdown, no code blocks, just 
 
 Be specific with dollar amounts. Use your knowledge of the ${quoteData.location.city}, ${quoteData.location.state} market. If line items aren't provided individually, analyze based on the total and scope description. Always provide at least 3 negotiation tips and 3 questions to ask. Always identify at least 1 potential red flag or missing item even if the quote seems fair, as there are always areas to verify.`
 
+  const anthropic = getClient()
   const message = await anthropic.messages.create({
     model: 'claude-sonnet-4-20250514',
     max_tokens: 4096,

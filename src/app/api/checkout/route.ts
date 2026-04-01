@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createCheckoutSession } from '@/lib/stripe'
 import { getReport } from '@/lib/storage'
 
+export const maxDuration = 30
+
 export async function POST(req: NextRequest) {
   try {
     const { reportId } = await req.json()
