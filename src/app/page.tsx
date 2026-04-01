@@ -527,7 +527,7 @@ export default function HomePage() {
       </section>
 
       {/* ── FAQ ── */}
-      <section className="bg-white py-24 px-4 sm:px-6 lg:px-8">
+      <section id="faq" className="bg-white py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto">
           <motion.div
             initial="hidden"

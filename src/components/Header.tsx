@@ -45,6 +45,12 @@ export default function Header() {
               How It Works
             </Link>
             <Link
+              href="/#faq"
+              className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors"
+            >
+              FAQ
+            </Link>
+            <Link
               href="/analyze"
               className="btn-teal px-5 py-2 rounded-lg text-sm inline-block"
             >
@@ -80,6 +86,13 @@ export default function Header() {
                 onClick={() => setIsMenuOpen(false)}
               >
                 How It Works
+              </Link>
+              <Link
+                href="/#faq"
+                className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors py-2.5 px-3 rounded-lg hover:bg-slate-50"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                FAQ
               </Link>
               <Link
                 href="/analyze"
