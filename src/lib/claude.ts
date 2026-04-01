@@ -101,7 +101,7 @@ Please respond with ONLY a valid JSON object (no markdown, no code blocks, just 
 Be specific with dollar amounts. Use your knowledge of the ${quoteData.location.city}, ${quoteData.location.state} market. If line items aren't provided individually, analyze based on the total and scope description. Always provide at least 3 negotiation tips and 3 questions to ask. Always identify at least 1 potential red flag or missing item even if the quote seems fair, as there are always areas to verify.`
 
   const message = await anthropic.messages.create({
-    model: 'claude-3-5-sonnet-20241022',
+    model: 'claude-sonnet-4-20250514',
     max_tokens: 4096,
     messages: [
       {
