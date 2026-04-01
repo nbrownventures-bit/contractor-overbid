@@ -46,19 +46,9 @@ export async function POST(req: NextRequest) {
       isPaid: false,
     }
 
-    saveReport(report)
-
+    // Return the full report to the client (stored client-side for MVP)
     return NextResponse.json({
-      reportId,
-      // Return teaser data (free preview)
-      teaser: {
-        verdict: analysisResult.verdict,
-        totalQuotedPrice: analysisResult.totalQuotedPrice,
-        estimatedFairPriceMin: analysisResult.estimatedFairPriceMin,
-        estimatedFairPriceMax: analysisResult.estimatedFairPriceMax,
-        potentialSavings: analysisResult.potentialSavings,
-        summary: analysisResult.summary,
-      },
+      report,
     })
   } catch (error) {
     const errMsg = error instanceof Error ? error.message : String(error)

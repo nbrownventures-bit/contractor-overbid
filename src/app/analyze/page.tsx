@@ -110,7 +110,9 @@ export default function AnalyzePage() {
       }
 
       const data = await res.json()
-      router.push(`/report?id=${data.reportId}`)
+      // Store report in localStorage for the report page
+      localStorage.setItem(`report-${data.report.id}`, JSON.stringify(data.report))
+      router.push(`/report?id=${data.report.id}`)
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.')
     } finally {

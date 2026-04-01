@@ -11,6 +11,18 @@ function SuccessContent() {
   const [countdown, setCountdown] = useState(5)
 
   useEffect(() => {
+    // Mark report as paid in localStorage
+    if (reportId) {
+      try {
+        const stored = localStorage.getItem(`report-${reportId}`)
+        if (stored) {
+          const report = JSON.parse(stored)
+          report.isPaid = true
+          localStorage.setItem(`report-${reportId}`, JSON.stringify(report))
+        }
+      } catch {}
+    }
+
     const timer = setInterval(() => {
       setCountdown((prev) => {
         if (prev <= 1) {

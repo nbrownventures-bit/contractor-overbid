@@ -83,10 +83,28 @@ function ReportContent() {
 
   useEffect(() => {
     if (!reportId) return
-    fetchReport()
+    loadReport()
   }, [reportId])
 
-  const fetchReport = async () => {
+  const loadReport = () => {
+    try {
+      // Try localStorage first (primary storage for MVP)
+      const stored = localStorage.getItem(`report-${reportId}`)
+      if (stored) {
+        const parsed = JSON.parse(stored)
+        setReport(parsed)
+        setLoading(false)
+        return
+      }
+      // Fallback to API
+      fetchFromAPI()
+    } catch {
+      setError('Report not found. Please try analyzing your quote again.')
+      setLoading(false)
+    }
+  }
+
+  const fetchFromAPI = async () => {
     try {
       const res = await fetch(`/api/report?id=${reportId}`)
       if (!res.ok) throw new Error('Report not found')
@@ -147,14 +165,12 @@ function ReportContent() {
     )
   }
 
-  const verdict = report.isPaid
-    ? verdictLabels[report.analysisResult?.verdict || 'fair']
-    : verdictLabels[report.teaser?.verdict || 'fair']
-
-  const savings = report.isPaid ? report.analysisResult?.potentialSavings : report.teaser?.potentialSavings
-  const summary = report.isPaid ? report.analysisResult?.summary : report.teaser?.summary
-  const fairMin = report.isPaid ? report.analysisResult?.estimatedFairPriceMin : report.teaser?.estimatedFairPriceMin
-  const fairMax = report.isPaid ? report.analysisResult?.estimatedFairPriceMax : report.teaser?.estimatedFairPriceMax
+  const analysis = report.analysisResult
+  const verdict = verdictLabels[analysis?.verdict || report.teaser?.verdict || 'fair']
+  const savings = analysis?.potentialSavings ?? report.teaser?.potentialSavings
+  const summary = analysis?.summary ?? report.teaser?.summary
+  const fairMin = analysis?.estimatedFairPriceMin ?? report.teaser?.estimatedFairPriceMin
+  const fairMax = analysis?.estimatedFairPriceMax ?? report.teaser?.estimatedFairPriceMax
 
   return (
     <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
@@ -193,7 +209,7 @@ function ReportContent() {
         </div>
 
         {/* Full Report or Paywall */}
-        {report.isPaid && report.analysisResult ? (
+        {report.isPaid && analysis ? (
           <>
             {/* Line Item Analysis */}
             <div className="glass-card rounded-2xl p-6 sm:p-8 mb-6">
