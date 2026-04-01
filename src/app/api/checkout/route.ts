@@ -16,7 +16,11 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Stripe not configured' }, { status: 500 })
     }
 
-    const stripe = new Stripe(stripeKey)
+    const stripe = new Stripe(stripeKey, {
+      maxNetworkRetries: 3,
+      timeout: 20000,
+    })
+
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://contractor-overbid.vercel.app'
 
     const session = await stripe.checkout.sessions.create({
