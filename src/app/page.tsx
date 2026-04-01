@@ -270,6 +270,25 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ── Trust Badges ── */}
+      <section className="bg-slate-50 py-10 px-4 sm:px-6 lg:px-8 border-b border-slate-100">
+        <div className="max-w-5xl mx-auto">
+          <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-12">
+            {[
+              { icon: '🤖', text: 'Powered by Claude AI' },
+              { icon: '🔒', text: 'Secure payments via Stripe' },
+              { icon: '🇺🇸', text: 'US market data' },
+              { icon: '🛡️', text: 'Data stays private' },
+            ].map((item) => (
+              <div key={item.text} className="flex items-center gap-2 text-sm text-slate-500">
+                <span className="text-lg">{item.icon}</span>
+                <span className="font-medium">{item.text}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── How It Works ── */}
       <section id="how-it-works" className="bg-slate-50 py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
@@ -502,6 +521,75 @@ export default function HomePage() {
                 <h3 className="font-bold text-slate-900 mb-2">{item.title}</h3>
                 <p className="text-slate-500 text-sm leading-relaxed">{item.description}</p>
               </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ── FAQ ── */}
+      <section className="bg-white py-24 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-3xl mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-60px' }}
+            variants={fadeUp}
+            className="text-center mb-14"
+          >
+            <p className="text-sm font-semibold text-teal-600 uppercase tracking-widest mb-3">FAQ</p>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-4">
+              Common Questions
+            </h2>
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-60px' }}
+            variants={stagger}
+            className="space-y-4"
+          >
+            {[
+              {
+                q: 'How accurate is the AI analysis?',
+                a: 'Our AI uses current market data and regional pricing to compare your quote against fair rates. While no tool can replace an on-site assessment, our analysis gives you a strong baseline for understanding whether your quote is in the right ballpark and where to negotiate.',
+              },
+              {
+                q: 'What do I get for free vs. the paid report?',
+                a: 'The free analysis gives you an overall verdict (Fair, Slightly High, Overpriced, or Significantly Overpriced) along with estimated fair price range and potential savings. The $9.99 full report includes line-by-line analysis, red flags, missing items, word-for-word negotiation scripts, and questions to ask your contractor.',
+              },
+              {
+                q: 'Is my quote data kept private?',
+                a: 'Yes. Your quote data is processed in real-time for analysis and stored locally in your browser. We don\'t share your data with contractors, advertisers, or any third parties.',
+              },
+              {
+                q: 'What types of contractor work can I analyze?',
+                a: 'Roofing, plumbing, electrical, HVAC, kitchen and bathroom remodels, painting, flooring, general renovations, decks, fencing, landscaping, siding, windows, doors, and more. If a contractor quoted it, we can analyze it.',
+              },
+              {
+                q: 'Can I use this to negotiate with my contractor?',
+                a: 'Absolutely — that\'s the whole point. The full report includes specific negotiation scripts you can use word-for-word, plus the right questions to ask. Many homeowners use it to have a more informed conversation and get a better price.',
+              },
+              {
+                q: 'Do I need to create an account?',
+                a: 'No. Just paste your quote details and get your analysis. No signup, no account, no email required for the free analysis.',
+              },
+            ].map((item) => (
+              <motion.details
+                key={item.q}
+                variants={fadeUp}
+                className="group bg-slate-50 rounded-xl border border-slate-200 overflow-hidden"
+              >
+                <summary className="flex items-center justify-between px-6 py-4 cursor-pointer list-none font-semibold text-slate-900 hover:bg-slate-100 transition-colors">
+                  {item.q}
+                  <svg className="w-5 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div className="px-6 pb-4 text-sm text-slate-600 leading-relaxed">
+                  {item.a}
+                </div>
+              </motion.details>
             ))}
           </motion.div>
         </div>
