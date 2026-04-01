@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createCheckoutSession } from '@/lib/stripe'
-import { getReport } from '@/lib/storage'
 
 export const maxDuration = 30
 
@@ -10,15 +9,6 @@ export async function POST(req: NextRequest) {
 
     if (!reportId) {
       return NextResponse.json({ error: 'Report ID is required' }, { status: 400 })
-    }
-
-    const report = getReport(reportId)
-    if (!report) {
-      return NextResponse.json({ error: 'Report not found' }, { status: 404 })
-    }
-
-    if (report.isPaid) {
-      return NextResponse.json({ error: 'Report already paid for', alreadyPaid: true }, { status: 400 })
     }
 
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
