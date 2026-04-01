@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 40">
+  <!-- Icon -->
+  <rect width="36" height="36" rx="8" y="2" fill="#0D9488"/>
+  <path d="M18 7 L8 15 L10 15 L10 29 C10 29.5 10.5 30 11 30 L25 30 C25.5 30 26 29.5 26 29 L26 15 L28 15 Z" fill="white" opacity="0.95"/>
+  <path d="M18 13 C18 13 14 14.5 14 17.5 C14 20.5 16 22 18 23 C20 22 22 20.5 22 17.5 C22 14.5 18 13 18 13 Z" fill="#0D9488"/>
+  <path d="M16 17.5 L17.5 19 L20.5 15.5" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Text -->
+  <text x="44" y="26" font-family="Inter, system-ui, sans-serif" font-size="20" font-weight="700" fill="#0F172A">Contractor</text>
+  <text x="162" y="26" font-family="Inter, system-ui, sans-serif" font-size="20" font-weight="700" fill="#0D9488">OverBid</text>
+</svg>
