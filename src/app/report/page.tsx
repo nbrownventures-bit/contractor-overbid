@@ -215,7 +215,7 @@ function ReportContent() {
             <div className="glass-card rounded-2xl p-6 sm:p-8 mb-6">
               <h2 className="text-xl font-bold mb-6">Line-by-Line Analysis</h2>
               <div className="space-y-4">
-                {report.analysisResult.lineItemAnalyses.map((item, i) => (
+                {analysis!.lineItemAnalyses.map((item, i) => (
                   <div key={i} className="bg-white/5 rounded-xl p-4">
                     <div className="flex items-start justify-between mb-2">
                       <div className="flex items-center gap-2">
@@ -252,13 +252,13 @@ function ReportContent() {
             </div>
 
             {/* Red Flags */}
-            {report.analysisResult.redFlags.length > 0 && (
+            {analysis!.redFlags.length > 0 && (
               <div className="glass-card rounded-2xl p-6 sm:p-8 mb-6">
                 <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
                   🚩 Red Flags
                 </h2>
                 <ul className="space-y-3">
-                  {report.analysisResult.redFlags.map((flag, i) => (
+                  {analysis!.redFlags.map((flag, i) => (
                     <li key={i} className="flex items-start gap-3 text-gray-300">
                       <span className="w-1.5 h-1.5 rounded-full bg-red-500 mt-2 flex-shrink-0" />
                       {flag}
@@ -269,11 +269,11 @@ function ReportContent() {
             )}
 
             {/* Missing Items */}
-            {report.analysisResult.missingItems.length > 0 && (
+            {analysis!.missingItems.length > 0 && (
               <div className="glass-card rounded-2xl p-6 sm:p-8 mb-6">
                 <h2 className="text-xl font-bold mb-4">📋 Missing Items</h2>
                 <ul className="space-y-3">
-                  {report.analysisResult.missingItems.map((item, i) => (
+                  {analysis!.missingItems.map((item, i) => (
                     <li key={i} className="flex items-start gap-3 text-gray-300">
                       <span className="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2 flex-shrink-0" />
                       {item}
@@ -287,7 +287,7 @@ function ReportContent() {
             <div className="glass-card rounded-2xl p-6 sm:p-8 mb-6">
               <h2 className="text-xl font-bold mb-4">💬 Negotiation Scripts</h2>
               <div className="space-y-4">
-                {report.analysisResult.negotiationTips.map((tip, i) => (
+                {analysis!.negotiationTips.map((tip, i) => (
                   <div key={i} className="bg-orange-500/5 border border-orange-500/10 rounded-xl p-4">
                     <p className="text-gray-300 text-sm">{tip}</p>
                   </div>
@@ -299,7 +299,7 @@ function ReportContent() {
             <div className="glass-card rounded-2xl p-6 sm:p-8 mb-6">
               <h2 className="text-xl font-bold mb-4">❓ Questions to Ask Your Contractor</h2>
               <ul className="space-y-3">
-                {report.analysisResult.questionsToAsk.map((q, i) => (
+                {analysis!.questionsToAsk.map((q, i) => (
                   <li key={i} className="flex items-start gap-3 text-gray-300">
                     <span className="text-orange-500 font-bold text-sm mt-0.5">{i + 1}.</span>
                     {q}
