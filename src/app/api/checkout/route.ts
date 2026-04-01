@@ -32,8 +32,8 @@ export async function POST(req: NextRequest) {
         'line_items[0][price_data][unit_amount]=999',
         'line_items[0][quantity]=1',
         'mode=payment',
-        `success_url=${baseUrl}/payment/success%3FreportId%3D${reportId}`,
-        `cancel_url=${baseUrl}/payment/cancel%3FreportId%3D${reportId}`,
+        `success_url=${encodeURIComponent(baseUrl + '/payment/success?reportId=' + reportId)}`,
+        `cancel_url=${encodeURIComponent(baseUrl + '/payment/cancel?reportId=' + reportId)}`,
         `metadata[reportId]=${reportId}`,
       ].join('&'),
     })
