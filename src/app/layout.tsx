@@ -25,15 +25,17 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'ContractorOverBid — Are You Getting OverBid?',
     description:
-      'AI-powered second opinion on contractor quotes. Average savings of $2,400 for homeowners.',
+      'Get an AI-powered second opinion on your contractor quote in 60 seconds. Find out if you\'re being overcharged.',
     type: 'website',
-    url: process.env.NEXT_PUBLIC_BASE_URL || 'https://contractoroverbid.com',
+    url: process.env.NEXT_PUBLIC_BASE_URL || 'https://contractor-overbid.vercel.app',
+    images: [{ url: '/og-image.svg', width: 1200, height: 630, alt: 'Contractor OverBid - AI Quote Analysis' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'ContractorOverBid — Are You Getting OverBid?',
     description:
-      'AI-powered second opinion on contractor quotes. Average savings of $2,400 for homeowners.',
+      'Get an AI-powered second opinion on your contractor quote in 60 seconds. Find out if you\'re being overcharged.',
+    images: ['/og-image.svg'],
   },
 }
 

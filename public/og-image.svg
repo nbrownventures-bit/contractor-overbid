@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#F8FAFC"/>
+  
+  <!-- Left accent bar -->
+  <rect width="8" height="630" fill="#0D9488"/>
+  
+  <!-- Logo icon -->
+  <rect x="60" y="40" width="52" height="52" rx="12" fill="#0D9488"/>
+  <path d="M86 50 L72 62 L75 62 L75 80 C75 80.5 75.5 81 76 81 L96 81 C96.5 81 97 80.5 97 80 L97 62 L100 62 Z" fill="white" opacity="0.95"/>
+  <path d="M86 58 C86 58 81 59.5 81 63 C81 66.5 83.5 68.5 86 69.5 C88.5 68.5 91 66.5 91 63 C91 59.5 86 58 86 58 Z" fill="#0D9488"/>
+  <path d="M84 63 L85.5 64.5 L89 60.5" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Brand text -->
+  <text x="125" y="74" font-family="Inter, system-ui, sans-serif" font-size="24" font-weight="700" fill="#0F172A">Contractor</text>
+  <text x="290" y="74" font-family="Inter, system-ui, sans-serif" font-size="24" font-weight="700" fill="#0D9488">OverBid</text>
+  
+  <!-- Main headline -->
+  <text x="60" y="240" font-family="Inter, system-ui, sans-serif" font-size="56" font-weight="800" fill="#0F172A">Are You Getting</text>
+  <text x="60" y="310" font-family="Inter, system-ui, sans-serif" font-size="56" font-weight="800" fill="#0D9488">OverBid?</text>
+  
+  <!-- Subheadline -->
+  <text x="60" y="370" font-family="Inter, system-ui, sans-serif" font-size="24" fill="#64748B">Get an AI-powered second opinion on your</text>
+  <text x="60" y="405" font-family="Inter, system-ui, sans-serif" font-size="24" fill="#64748B">contractor quote in 60 seconds.</text>
+  
+  <!-- CTA pill -->
+  <rect x="60" y="450" width="280" height="52" rx="26" fill="#0D9488"/>
+  <text x="200" y="483" font-family="Inter, system-ui, sans-serif" font-size="18" font-weight="600" fill="white" text-anchor="middle">Analyze Your Quote Free →</text>
+  
+  <!-- Right side mock card -->
+  <rect x="720" y="100" width="420" height="430" rx="20" fill="white" stroke="#E2E8F0" stroke-width="2"/>
+  
+  <!-- Card header -->
+  <text x="760" y="150" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="600" fill="#94A3B8">QUOTE ANALYSIS</text>
+  <text x="760" y="180" font-family="Inter, system-ui, sans-serif" font-size="22" font-weight="700" fill="#0F172A">Kitchen Remodel</text>
+  
+  <!-- Verdict badge -->
+  <rect x="950" y="130" width="150" height="32" rx="16" fill="#FEF2F2" stroke="#FECACA" stroke-width="1"/>
+  <text x="1025" y="152" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="700" fill="#DC2626" text-anchor="middle">Overpriced</text>
+  
+  <!-- Price boxes -->
+  <rect x="760" y="210" width="120" height="70" rx="10" fill="#F8FAFC"/>
+  <text x="770" y="235" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#94A3B8">Quoted</text>
+  <text x="770" y="262" font-family="Inter, system-ui, sans-serif" font-size="20" font-weight="700" fill="#0F172A">$32,000</text>
+  
+  <rect x="900" y="210" width="120" height="70" rx="10" fill="#F0FDFA"/>
+  <text x="910" y="235" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#0D9488">Fair Range</text>
+  <text x="910" y="262" font-family="Inter, system-ui, sans-serif" font-size="20" font-weight="700" fill="#0D9488">$24–27k</text>
+  
+  <!-- Line items -->
+  <circle cx="780" cy="320" r="5" fill="#EF4444"/>
+  <text x="795" y="325" font-family="Inter, system-ui, sans-serif" font-size="14" fill="#334155">Cabinet installation</text>
+  <text x="1050" y="325" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#EF4444">+38%</text>
+  
+  <circle cx="780" cy="355" r="5" fill="#22C55E"/>
+  <text x="795" y="360" font-family="Inter, system-ui, sans-serif" font-size="14" fill="#334155">Countertop materials</text>
+  <text x="1050" y="360" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#22C55E">Fair</text>
+  
+  <circle cx="780" cy="390" r="5" fill="#F97316"/>
+  <text x="795" y="395" font-family="Inter, system-ui, sans-serif" font-size="14" fill="#334155">Plumbing rough-in</text>
+  <text x="1050" y="395" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#F97316">+14%</text>
+  
+  <circle cx="780" cy="425" r="5" fill="#EF4444"/>
+  <text x="795" y="430" font-family="Inter, system-ui, sans-serif" font-size="14" fill="#334155">Labor (demolition)</text>
+  <text x="1050" y="430" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#EF4444">+62%</text>
+  
+  <!-- Savings badge -->
+  <rect x="760" y="460" width="360" height="50" rx="12" fill="#F0FDFA" stroke="#99F6E4" stroke-width="1"/>
+  <text x="940" y="491" font-family="Inter, system-ui, sans-serif" font-size="16" font-weight="700" fill="#0D9488" text-anchor="middle">💰 Potential savings: $4,500</text>
+</svg>
