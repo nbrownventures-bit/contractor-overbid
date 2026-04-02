@@ -151,14 +151,6 @@ export default function HomePage() {
               className="hidden lg:block"
             >
               <div className="relative">
-                {/* Hero photo */}
-                <div className="rounded-2xl overflow-hidden shadow-card-lg mb-4 border border-slate-100">
-                  <img
-                    src="https://i.imgur.com/Krf8jCd.png"
-                    alt="Homeowner stressed reviewing contractor quote"
-                    className="w-full h-48 object-cover object-top"
-                  />
-                </div>
                 {/* Mock report card */}
                 <div className="light-card rounded-2xl p-6 shadow-card-lg">
                   {/* Header */}
@@ -419,8 +411,8 @@ export default function HomePage() {
             <motion.div variants={fadeUp} className="order-1 lg:order-2">
               <div className="rounded-2xl overflow-hidden shadow-card-lg border border-slate-100">
                 <img
-                  src="https://i.imgur.com/Lg8ln07.png"
-                  alt="Reviewing a contractor quote document"
+                  src="https://i.imgur.com/Krf8jCd.png"
+                  alt="Stressed homeowner reviewing contractor quote at kitchen table"
                   className="w-full h-72 object-cover"
                 />
               </div>
@@ -439,7 +431,7 @@ export default function HomePage() {
               <div className="rounded-2xl overflow-hidden shadow-card-lg border border-slate-100">
                 <img
                   src="https://i.imgur.com/sQiEuTY.png"
-                  alt="Homeowner and contractor shaking hands on a fair deal"
+                  alt="Contractor and homeowner shaking hands after negotiation"
                   className="w-full h-72 object-cover"
                 />
               </div>
