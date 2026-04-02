@@ -69,6 +69,17 @@ const verdictConfig: Record<string, {
   badgeBg: string
   badgeText: string
 }> = {
+  below_market: {
+    label: 'Below Market — Great Deal',
+    icon: '★',
+    textColor: 'text-blue-700',
+    bgColor: 'bg-blue-50',
+    borderColor: 'border-blue-200',
+    gaugeClass: 'gauge-fill-fair',
+    gaugeWidth: 'w-[10%]',
+    badgeBg: 'bg-blue-100',
+    badgeText: 'text-blue-700',
+  },
   fair: {
     label: 'Fair Price',
     icon: '✓',
@@ -116,6 +127,7 @@ const verdictConfig: Record<string, {
 }
 
 const statusConfig: Record<string, { dot: string; badge: string; text: string; label: string }> = {
+  below_market: { dot: 'bg-blue-500', badge: 'bg-blue-100 text-blue-700 border border-blue-200', text: 'text-blue-700', label: 'Below Market' },
   fair: { dot: 'bg-green-500', badge: 'status-fair', text: 'text-green-700', label: 'Fair' },
   slightly_high: { dot: 'bg-amber-400', badge: 'status-slightly_high', text: 'text-amber-700', label: 'Slightly High' },
   overpriced: { dot: 'bg-orange-500', badge: 'status-overpriced', text: 'text-orange-700', label: 'Overpriced' },

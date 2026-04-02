@@ -27,13 +27,13 @@ export interface LineItemAnalysis {
   quotedPrice: number
   fairPriceMin: number
   fairPriceMax: number
-  status: 'fair' | 'slightly_high' | 'overpriced' | 'missing' | 'vague'
+  status: 'below_market' | 'fair' | 'slightly_high' | 'overpriced' | 'missing' | 'vague'
   flagReason?: string
   percentageOver?: number
 }
 
 export interface AnalysisResult {
-  verdict: 'fair' | 'slightly_high' | 'overpriced' | 'significantly_overpriced'
+  verdict: 'below_market' | 'fair' | 'slightly_high' | 'overpriced' | 'significantly_overpriced'
   totalQuotedPrice: number
   estimatedFairPriceMin: number
   estimatedFairPriceMax: number
