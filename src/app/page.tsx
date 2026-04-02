@@ -411,8 +411,8 @@ export default function HomePage() {
             <motion.div variants={fadeUp} className="order-1 lg:order-2">
               <div className="rounded-2xl overflow-hidden shadow-card-lg border border-slate-100">
                 <img
-                  src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=700&q=80"
-                  alt="Contractor reviewing documents"
+                  src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=700&q=80"
+                  alt="Contractor reviewing blueprints and quote"
                   className="w-full h-72 object-cover"
                 />
               </div>
@@ -430,8 +430,8 @@ export default function HomePage() {
             <motion.div variants={fadeUp}>
               <div className="rounded-2xl overflow-hidden shadow-card-lg border border-slate-100">
                 <img
-                  src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=80"
-                  alt="Home renovation planning"
+                  src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=700&q=80"
+                  alt="Homeowner and contractor shaking hands on a fair deal"
                   className="w-full h-72 object-cover"
                 />
               </div>
