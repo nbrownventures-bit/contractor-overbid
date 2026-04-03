@@ -153,6 +153,9 @@ function ReportContent() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [checkoutLoading, setCheckoutLoading] = useState(false)
+  const [email, setEmail] = useState('')
+  const [emailSubmitted, setEmailSubmitted] = useState(false)
+  const [emailLoading, setEmailLoading] = useState(false)
 
   useEffect(() => {
     if (!reportId) return
@@ -350,6 +353,77 @@ function ReportContent() {
             </div>
           </div>
         </motion.div>
+
+        {/* ── Email capture (unpaid only) ── */}
+        {!report.isPaid && !emailSubmitted && (
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.3 }}
+            className="bg-white rounded-2xl border border-orange-100 shadow-card p-5 sm:p-6 mb-6"
+          >
+            <div className="flex items-start gap-4">
+              <div className="w-9 h-9 bg-orange-50 border border-orange-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                <svg className="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <div className="flex-1">
+                <p className="font-semibold text-slate-900 text-sm mb-1">Get this report emailed to you</p>
+                <p className="text-xs text-slate-500 mb-3">Free. We'll send your verdict and fair price range so you have it handy when talking to your contractor.</p>
+                <form
+                  onSubmit={async (e) => {
+                    e.preventDefault()
+                    setEmailLoading(true)
+                    try {
+                      await fetch('/api/email-capture', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                          email,
+                          jobType: report.quoteData.jobType,
+                          location: `${report.quoteData.location.city}, ${report.quoteData.location.state}`,
+                          verdict: verdictKey,
+                        }),
+                      })
+                      setEmailSubmitted(true)
+                    } catch {}
+                    finally { setEmailLoading(false) }
+                  }}
+                  className="flex gap-2"
+                >
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="your@email.com"
+                    required
+                    className="flex-1 input-light rounded-xl px-4 py-2.5 text-sm"
+                  />
+                  <button
+                    type="submit"
+                    disabled={emailLoading}
+                    className="btn-teal px-4 py-2.5 rounded-xl text-sm font-semibold flex-shrink-0 disabled:opacity-60"
+                  >
+                    {emailLoading ? 'Sending...' : 'Send'}
+                  </button>
+                </form>
+              </div>
+            </div>
+          </motion.div>
+        )}
+        {!report.isPaid && emailSubmitted && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.97 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="bg-green-50 border border-green-100 rounded-2xl p-4 mb-6 flex items-center gap-3"
+          >
+            <svg className="w-5 h-5 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+            </svg>
+            <p className="text-sm font-medium text-green-700">Got it! Check your inbox shortly.</p>
+          </motion.div>
+        )}
 
         {/* ── Full report (paid) or paywall ── */}
         {report.isPaid && analysis ? (
