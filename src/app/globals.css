@@ -49,7 +49,7 @@ a {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #0d9488;
+  background: #F5921D;
 }
 
 * {
@@ -74,8 +74,8 @@ a {
 }
 
 @keyframes pulse-teal {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(13, 148, 136, 0.35); }
-  50% { box-shadow: 0 0 0 10px rgba(13, 148, 136, 0); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(245, 146, 29, 0.35); }
+  50% { box-shadow: 0 0 0 10px rgba(245, 146, 29, 0); }
 }
 
 @keyframes shimmer {
@@ -118,9 +118,9 @@ a {
   user-select: none;
 }
 
-/* Gradient text - teal */
+/* Gradient text - orange */
 .gradient-text {
-  background: linear-gradient(135deg, #0d9488, #059669);
+  background: linear-gradient(135deg, #F5921D, #EA6C0A);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -142,22 +142,22 @@ a {
 
 .light-card-hover:hover {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-  border-color: #0d9488;
+  border-color: #F5921D;
   transform: translateY(-2px);
 }
 
-/* Teal CTA button */
+/* Orange CTA button */
 .btn-teal {
-  background: #0d9488;
+  background: #F5921D;
   color: white;
   font-weight: 600;
   transition: all 0.2s ease;
 }
 
 .btn-teal:hover {
-  background: #0f766e;
+  background: #EA6C0A;
   transform: translateY(-1px);
-  box-shadow: 0 8px 20px rgba(13, 148, 136, 0.3);
+  box-shadow: 0 8px 20px rgba(245, 146, 29, 0.3);
 }
 
 .btn-teal:active {
@@ -165,17 +165,17 @@ a {
   box-shadow: none;
 }
 
-/* Outline teal button */
+/* Outline orange button */
 .btn-teal-outline {
   background: transparent;
-  color: #0d9488;
-  border: 1.5px solid #0d9488;
+  color: #F5921D;
+  border: 1.5px solid #F5921D;
   font-weight: 600;
   transition: all 0.2s ease;
 }
 
 .btn-teal-outline:hover {
-  background: #0d9488;
+  background: #F5921D;
   color: white;
   transform: translateY(-1px);
 }
@@ -215,8 +215,8 @@ a {
 
 .input-light:focus {
   outline: none;
-  border-color: #0d9488;
-  box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.12);
+  border-color: #F5921D;
+  box-shadow: 0 0 0 3px rgba(245, 146, 29, 0.12);
 }
 
 .input-light::placeholder {
@@ -239,11 +239,11 @@ a {
 
 /* Gradient backgrounds */
 .bg-teal-gradient {
-  background: linear-gradient(135deg, #0d9488 0%, #059669 100%);
+  background: linear-gradient(135deg, #F5921D 0%, #EA6C0A 100%);
 }
 
 .bg-hero-gradient {
-  background: linear-gradient(160deg, #f0fdfa 0%, #ffffff 50%, #f8fafc 100%);
+  background: linear-gradient(160deg, #fff7ed 0%, #ffffff 50%, #f8fafc 100%);
 }
 
 /* Report gauge styles */

@@ -62,7 +62,7 @@ function SuccessContent() {
         </p>
         <Link
           href={`/report?id=${reportId}`}
-          className="inline-flex items-center justify-center px-8 py-3 bg-teal-600 text-white rounded-xl font-semibold hover:bg-teal-700 transition-colors shadow-md shadow-teal-600/20"
+          className="inline-flex items-center justify-center px-8 py-3 btn-teal rounded-xl font-semibold shadow-md"
         >
           View Full Report Now
         </Link>

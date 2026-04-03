@@ -340,10 +340,12 @@ function ReportContent() {
                 ${fairMin?.toLocaleString()} – ${fairMax?.toLocaleString()}
               </p>
             </div>
-            <div className="bg-amber-50 border border-amber-100 rounded-xl p-4">
-              <p className="text-xs font-semibold text-amber-600 uppercase tracking-wider mb-2">Potential Savings</p>
-              <p className="text-2xl font-extrabold text-amber-700">
-                ${savings?.toLocaleString()}
+            <div className="bg-green-50 border border-green-100 rounded-xl p-4">
+              <p className="text-xs font-semibold text-green-600 uppercase tracking-wider mb-2">Potential Savings</p>
+              <p className="text-2xl font-extrabold text-green-700">
+                {fairMin && fairMax && report.quoteData.totalPrice > fairMax
+                  ? `$${(report.quoteData.totalPrice - fairMax).toLocaleString()} – $${(report.quoteData.totalPrice - fairMin).toLocaleString()}`
+                  : savings && savings > 0 ? `$${savings.toLocaleString()}` : 'At Market Rate'}
               </p>
             </div>
           </div>

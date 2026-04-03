@@ -7,26 +7,18 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
           {/* Brand */}
           <div className="md:col-span-2">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 bg-teal-600 rounded-lg flex items-center justify-center">
-                <svg className="text-white" style={{width:'18px',height:'18px'}} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <span className="text-lg font-bold text-white tracking-tight">
-                <img src="/icon.svg" alt="" className="w-7 h-7" />
-                Contractor<span className="text-teal-400">OverBid</span>
-              </span>
+            <div className="mb-4">
+              <img src="/logo-light.svg" alt="ContractorOverBid" className="h-8" />
             </div>
             <p className="text-slate-400 text-sm leading-relaxed max-w-xs">
               AI-powered second opinions on contractor quotes. Stop overpaying and negotiate with confidence.
             </p>
             <div className="mt-5 flex items-center gap-3">
-              <div className="flex items-center gap-1.5 bg-teal-600/10 border border-teal-600/20 rounded-full px-3 py-1.5">
-                <svg className="w-3.5 h-3.5 text-teal-400" fill="currentColor" viewBox="0 0 20 20">
+              <div className="flex items-center gap-1.5 bg-orange-500/10 border border-orange-500/20 rounded-full px-3 py-1.5">
+                <svg className="w-3.5 h-3.5 text-orange-400" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
-                <span className="text-xs font-medium text-teal-400">AI-Powered</span>
+                <span className="text-xs font-medium text-orange-400">AI-Powered</span>
               </div>
               <div className="flex items-center gap-1.5 bg-slate-700/50 border border-slate-600/30 rounded-full px-3 py-1.5">
                 <svg className="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">

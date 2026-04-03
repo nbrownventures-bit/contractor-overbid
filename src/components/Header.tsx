@@ -24,16 +24,8 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-1.5 group">
-            <div className="w-8 h-8 bg-teal-600 rounded-lg flex items-center justify-center shadow-sm">
-              <svg className="w-4.5 h-4.5 text-white" style={{width:'18px',height:'18px'}} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
-            <span className="text-lg font-bold text-slate-900 tracking-tight">
-              <img src="/icon.svg" alt="" className="w-7 h-7" />
-              Contractor<span className="text-teal-600">OverBid</span>
-            </span>
+          <Link href="/" className="flex items-center">
+            <img src="/logo.svg" alt="ContractorOverBid" className="h-8" />
           </Link>
 
           {/* Desktop Navigation */}
