@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
     params.append('line_items[0][price_data][unit_amount]', '499')
     params.append('line_items[0][quantity]', '1')
     params.append('mode', 'payment')
-    params.append('success_url', `${baseUrl}/payment/success?reportId=${reportId}`)
+    params.append('success_url', `${baseUrl}/payment/success?reportId=${reportId}&session_id={CHECKOUT_SESSION_ID}`)
     params.append('cancel_url', `${baseUrl}/payment/cancel?reportId=${reportId}`)
     params.append('metadata[reportId]', reportId)
 

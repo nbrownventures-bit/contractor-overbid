@@ -9,10 +9,12 @@ import { motion } from 'framer-motion'
 function SuccessContent() {
   const searchParams = useSearchParams()
   const reportId = searchParams.get('reportId')
+  const sessionId = searchParams.get('session_id')
   const [countdown, setCountdown] = useState(5)
+  const [emailSent, setEmailSent] = useState(false)
 
   useEffect(() => {
-    // Mark report as paid in localStorage
+    // Mark report as paid in localStorage and send email
     if (reportId) {
       try {
         const stored = localStorage.getItem(`report-${reportId}`)
@@ -20,10 +22,27 @@ function SuccessContent() {
           const report = JSON.parse(stored)
           report.isPaid = true
           localStorage.setItem(`report-${reportId}`, JSON.stringify(report))
+
+          // Send post-purchase email if we have a Stripe session ID
+          if (sessionId && !emailSent) {
+            setEmailSent(true)
+            fetch('/api/send-report-email', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                sessionId,
+                reportId,
+                reportData: report,
+              }),
+            }).catch((err) => console.error('Failed to send report email:', err))
+          }
         }
       } catch {}
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [reportId, sessionId])
 
+  useEffect(() => {
     const timer = setInterval(() => {
       setCountdown((prev) => {
         if (prev <= 1) {
