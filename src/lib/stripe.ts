@@ -18,7 +18,7 @@ export async function createCheckoutSession(
               'Complete line-by-line contractor quote analysis with negotiation tips, red flags, and potential savings breakdown.',
             images: [],
           },
-          unit_amount: 999, // $9.99 in cents
+          unit_amount: 499, // $4.99 in cents
         },
         quantity: 1,
       },

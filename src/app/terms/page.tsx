@@ -25,7 +25,7 @@ export default function TermsPage() {
           <section>
             <h2 className="text-xl font-semibold text-slate-900 mb-3">2. Description of Service</h2>
             <p className="text-slate-600 leading-relaxed">
-              Contractor OverBid provides AI-powered analysis of contractor quotes and estimates. Users submit quote details and receive an automated analysis comparing pricing against market rates. The Service includes a free summary verdict and a paid detailed report ($9.99 per report).
+              Contractor OverBid provides AI-powered analysis of contractor quotes and estimates. Users submit quote details and receive an automated analysis comparing pricing against market rates. The Service includes a free summary verdict and a paid detailed report ($4.99 per report).
             </p>
           </section>
 
@@ -49,7 +49,7 @@ export default function TermsPage() {
           <section>
             <h2 className="text-xl font-semibold text-slate-900 mb-3">5. Payments & Refunds</h2>
             <ul className="list-disc pl-6 text-slate-600 space-y-2">
-              <li>Full reports are available for a one-time payment of $9.99 per report.</li>
+              <li>Full reports are available for a one-time payment of $4.99 per report.</li>
               <li>Payments are processed securely through Stripe.</li>
               <li>All sales are final. Due to the instant delivery of digital content, refunds are generally not available.</li>
               <li>If you experience a technical issue that prevents you from accessing a paid report, please contact us and we will resolve the issue or provide a refund at our discretion.</li>

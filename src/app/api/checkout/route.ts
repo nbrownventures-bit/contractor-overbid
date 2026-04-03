@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
     params.append('line_items[0][price_data][currency]', 'usd')
     params.append('line_items[0][price_data][product_data][name]', 'ContractorOverBid Full Report')
     params.append('line_items[0][price_data][product_data][description]', 'Complete line-by-line quote analysis with negotiation tips.')
-    params.append('line_items[0][price_data][unit_amount]', '999')
+    params.append('line_items[0][price_data][unit_amount]', '499')
     params.append('line_items[0][quantity]', '1')
     params.append('mode', 'payment')
     params.append('success_url', `${baseUrl}/payment/success?reportId=${reportId}`)

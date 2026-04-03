@@ -515,7 +515,7 @@ export default function AnalyzePage() {
             </button>
 
             <p className="text-center text-xs text-slate-400 mt-3">
-              Free initial analysis. Full detailed report for $9.99. No subscription needed.
+              Free initial analysis. Full detailed report for $4.99. No subscription needed.
             </p>
           </motion.div>
 

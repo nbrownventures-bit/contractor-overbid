@@ -556,7 +556,7 @@ export default function HomePage() {
               },
               {
                 q: 'What do I get for free vs. the paid report?',
-                a: 'The free analysis gives you an overall verdict (Fair, Slightly High, Overpriced, or Significantly Overpriced) along with estimated fair price range and potential savings. The $9.99 full report includes line-by-line analysis, red flags, missing items, word-for-word negotiation scripts, and questions to ask your contractor.',
+                a: 'The free analysis gives you an overall verdict (Fair, Slightly High, Overpriced, or Significantly Overpriced) along with estimated fair price range and potential savings. The $4.99 full report includes line-by-line analysis, red flags, missing items, word-for-word negotiation scripts, and questions to ask your contractor.',
               },
               {
                 q: 'Is my quote data kept private?',
@@ -638,7 +638,7 @@ export default function HomePage() {
           </motion.div>
 
           <motion.p variants={fadeUp} className="text-teal-200/70 text-sm mt-5">
-            Free initial analysis. Full report for $9.99. No subscription.
+            Free initial analysis. Full report for $4.99. No subscription.
           </motion.p>
         </motion.div>
       </section>
