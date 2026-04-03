@@ -384,6 +384,10 @@ function ReportContent() {
                           jobType: report.quoteData.jobType,
                           location: `${report.quoteData.location.city}, ${report.quoteData.location.state}`,
                           verdict: verdictKey,
+                          quotedPrice: report.quoteData.totalPrice,
+                          fairPriceMin: fairMin,
+                          fairPriceMax: fairMax,
+                          potentialSavings: savings,
                         }),
                       })
                       setEmailSubmitted(true)
