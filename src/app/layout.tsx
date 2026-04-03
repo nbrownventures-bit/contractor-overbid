@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   icons: {
-    icon: '/favicon.svg',
+    icon: '/favicon-v2.svg',
     apple: '/icon.svg',
   },
   title: 'ContractorOverBid — AI-Powered Contractor Quote Analysis',
