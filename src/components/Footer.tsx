@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer className="bg-slate-900 text-slate-300 py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-10 mb-12">
           {/* Brand */}
           <div className="md:col-span-2">
             <div className="mb-4">
@@ -46,6 +46,43 @@ export default function Footer() {
               <li>
                 <Link href="/analyze" className="text-sm text-slate-400 hover:text-white transition-colors">
                   Analyze a Quote
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Trade Types */}
+          <div>
+            <h3 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">By Trade</h3>
+            <ul className="space-y-3">
+              <li>
+                <Link href="/roofing" className="text-sm text-slate-400 hover:text-white transition-colors">
+                  Roofing Quotes
+                </Link>
+              </li>
+              <li>
+                <Link href="/hvac" className="text-sm text-slate-400 hover:text-white transition-colors">
+                  HVAC Quotes
+                </Link>
+              </li>
+              <li>
+                <Link href="/plumbing" className="text-sm text-slate-400 hover:text-white transition-colors">
+                  Plumbing Quotes
+                </Link>
+              </li>
+              <li>
+                <Link href="/electrical" className="text-sm text-slate-400 hover:text-white transition-colors">
+                  Electrical Quotes
+                </Link>
+              </li>
+              <li>
+                <Link href="/kitchen-remodel" className="text-sm text-slate-400 hover:text-white transition-colors">
+                  Kitchen Remodel
+                </Link>
+              </li>
+              <li>
+                <Link href="/general-contractor" className="text-sm text-slate-400 hover:text-white transition-colors">
+                  General Contractor
                 </Link>
               </li>
             </ul>
