@@ -38,6 +38,9 @@ export const metadata: Metadata = {
       'Get an AI-powered second opinion on your contractor quote in 60 seconds. Find out if you\'re being overcharged.',
     images: ['/og-image.svg'],
   },
+  verification: {
+    google: '2I0g7fH4LCNh7SUwLzMKtG_A1w-WBbStFDAQZXZ6NmU',
+  },
 }
 
 export default function RootLayout({
