@@ -85,6 +85,26 @@ export default function Footer() {
                   General Contractor
                 </Link>
               </li>
+              <li>
+                <Link href="/bathroom-remodel" className="text-sm text-slate-400 hover:text-white transition-colors">
+                  Bathroom Remodel
+                </Link>
+              </li>
+              <li>
+                <Link href="/deck-patio" className="text-sm text-slate-400 hover:text-white transition-colors">
+                  Deck &amp; Patio
+                </Link>
+              </li>
+              <li>
+                <Link href="/painting" className="text-sm text-slate-400 hover:text-white transition-colors">
+                  Painting
+                </Link>
+              </li>
+              <li>
+                <Link href="/flooring" className="text-sm text-slate-400 hover:text-white transition-colors">
+                  Flooring
+                </Link>
+              </li>
             </ul>
           </div>
 
